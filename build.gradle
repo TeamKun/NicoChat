@@ -128,3 +128,4 @@ jar {
 }
 
 jar.finalizedBy('reobfJar')
+tasks.withType(Jar) {compileJava.options.encoding = 'UTF-8'}
