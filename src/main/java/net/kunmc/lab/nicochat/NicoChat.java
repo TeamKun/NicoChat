@@ -2,6 +2,9 @@ package net.kunmc.lab.nicochat;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.screen.ChatScreen;
+import net.minecraftforge.client.event.GuiOpenEvent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
@@ -28,6 +31,26 @@ public class NicoChat {
     @SubscribeEvent
     public void drawHUD(RenderGameOverlayEvent.Post event){
         DrawNicoChat.NicoChatUpdate(event);
+    }
+
+    @SubscribeEvent
+    public void onOpneGUI(GuiOpenEvent e){
+        if(e.getGui() instanceof ChatScreen && !(e.getGui() instanceof ChatScreenTest)){
+
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    try {
+                        Thread.sleep(60);
+                        ((ChatScreen)e.getGui()).onClose();
+                        Minecraft.getInstance().displayGuiScreen(new ChatScreenTest("aa"));
+                    } catch (InterruptedException interruptedException) {
+                        interruptedException.printStackTrace();
+                    }
+                }
+            }).start();
+
+        }
     }
 
 
