@@ -22,6 +22,9 @@ public class DrawNicoChat {
         int w = renderGameOverlayEvent.getWindow().getScaledWidth();
         int h = renderGameOverlayEvent.getWindow().getScaledHeight();
 
+
+        //TODO リストを取得してチャットを表示する処理を書く
+
         //Pushとpopの間の変更は無効になる
         matrixStack.push();
 

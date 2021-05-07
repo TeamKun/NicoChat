@@ -7,11 +7,11 @@ import java.util.Date;
 
 //普通に右から左に流れるチャット
 public class NormalNicoChat implements INicoChat{
-    Color color;
-    int size;
-    double y;
-    String chat;
-    Date chatInsertedTime;
+    private final Color color;
+    private final int size;
+    private final double y;
+    private final String chat;
+    private final Date chatInsertedTime;
 
     public NormalNicoChat(Color color, int size, double y,String chat) {
         this.color = color;
@@ -28,12 +28,12 @@ public class NormalNicoChat implements INicoChat{
 
     @Override
     public Color GetColor() {
-        return null;
+        return color;
     }
 
     @Override
     public int GetSize() {
-        return 0;
+        return size;
     }
 
     //TODO ここを実装する

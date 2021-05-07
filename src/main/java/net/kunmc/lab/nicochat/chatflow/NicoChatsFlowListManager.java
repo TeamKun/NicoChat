@@ -8,12 +8,12 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class NicoChatsFlowListManager {
-    List<INicoChat> nicoChats = new ArrayList<INicoChat>();
-    public void AddNicoChats(INicoChat nicoChat){
+    private static List<INicoChat> nicoChats = new ArrayList<>();
+    public static void AddNicoChats(INicoChat nicoChat){
         nicoChats.add(nicoChat);
     }
 
-    public List<INicoChat> getNicoChats(){
+    public static List<INicoChat> getNicoChats(){
         //既に流れきったチャットを削除する
         nicoChats = nicoChats.stream().filter(INicoChat::isFlowing).collect(Collectors.toList());
 

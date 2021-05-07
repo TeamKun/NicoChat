@@ -7,11 +7,11 @@ import java.util.Date;
 
 //上に固定されるタイプのチャット
 public class TopNicoChat implements INicoChat{
-    Color color;
-    int size;
-    double y;
-    String chat;
-    Date chatInsertedTime;
+    private final Color color;
+    private final int size;
+    private final double y;
+    private final String chat;
+    private final Date chatInsertedTime;
 
     public TopNicoChat(Color color, int size, double y,String chat) {
         this.color = color;
@@ -27,12 +27,12 @@ public class TopNicoChat implements INicoChat{
 
     @Override
     public Color GetColor() {
-        return null;
+        return color;
     }
 
     @Override
     public int GetSize() {
-        return 0;
+        return size;
     }
 
     //TODO ここを実装する
