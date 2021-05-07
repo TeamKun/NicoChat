@@ -4,6 +4,7 @@ import net.kunmc.lab.nicochat.NicoChat;
 import net.kunmc.lab.nicochat.chatflow.chats.INicoChat;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -15,7 +16,7 @@ public class NicoChatsFlowListManager {
 
     public static List<INicoChat> getNicoChats(){
         //既に流れきったチャットを削除する
-        nicoChats = nicoChats.stream().filter(INicoChat::isFlowing).collect(Collectors.toList());
+        nicoChats = nicoChats.stream().filter(i -> i.isFlowing(new Date())).collect(Collectors.toList());
 
         return nicoChats;
     }
