@@ -1,4 +1,4 @@
-package net.kunmc.lab.nicochat.chatflow;
+package net.kunmc.lab.nicochat.chatflow.chats;
 
 import net.minecraft.util.math.vector.Vector2f;
 import net.minecraft.util.text.Color;
@@ -10,11 +10,13 @@ public class NormalNicoChat implements INicoChat{
     Color color;
     int Size;
     double y;
+    Date chatInsertedTime;
 
     public NormalNicoChat(Color color, int size, double y) {
         this.color = color;
         Size = size;
         this.y = y;
+        chatInsertedTime = new Date();
     }
 
     @Override
@@ -30,5 +32,11 @@ public class NormalNicoChat implements INicoChat{
     @Override
     public int GetSize() {
         return 0;
+    }
+
+    //TODO ここを実装する
+    @Override
+    public boolean isFlowing() {
+        return true;
     }
 }

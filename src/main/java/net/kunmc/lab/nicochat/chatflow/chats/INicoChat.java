@@ -1,4 +1,4 @@
-package net.kunmc.lab.nicochat.chatflow;
+package net.kunmc.lab.nicochat.chatflow.chats;
 
 import net.minecraft.util.math.vector.Vector2f;
 import net.minecraft.util.text.Color;
@@ -12,4 +12,6 @@ public interface INicoChat {
     public Color GetColor();
 
     public int GetSize();
+
+    public boolean isFlowing();
 }
