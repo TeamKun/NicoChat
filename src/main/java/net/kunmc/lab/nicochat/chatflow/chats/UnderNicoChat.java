@@ -8,13 +8,17 @@ import java.util.Date;
 //下に固定されるタイプのチャット
 public class UnderNicoChat  implements INicoChat{
     Color color;
-    int Size;
+    int size;
     double y;
+    String chat;
+    Date chatInsertedTime;
 
-    public UnderNicoChat(Color color, int size, double y) {
+    public UnderNicoChat(Color color, int size, double y,String chat) {
         this.color = color;
-        Size = size;
+        this.size = size;
+        this.chat = chat;
         this.y = y;
+        chatInsertedTime = new Date();
     }
 
     @Override
@@ -36,5 +40,10 @@ public class UnderNicoChat  implements INicoChat{
     @Override
     public boolean isFlowing() {
         return true;
+    }
+
+    @Override
+    public String getChat() {
+        return chat;
     }
 }

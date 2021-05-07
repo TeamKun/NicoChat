@@ -8,13 +8,17 @@ import java.util.Date;
 //上に固定されるタイプのチャット
 public class TopNicoChat implements INicoChat{
     Color color;
-    int Size;
+    int size;
     double y;
+    String chat;
+    Date chatInsertedTime;
 
-    public TopNicoChat(Color color, int size, double y) {
+    public TopNicoChat(Color color, int size, double y,String chat) {
         this.color = color;
-        Size = size;
+        this.size = size;
+        this.chat = chat;
         this.y = y;
+        chatInsertedTime = new Date();
     }
     @Override
     public Vector2f GetPosition(Date nowTime) {
@@ -35,5 +39,10 @@ public class TopNicoChat implements INicoChat{
     @Override
     public boolean isFlowing() {
         return true;
+    }
+
+    @Override
+    public String getChat() {
+        return chat;
     }
 }

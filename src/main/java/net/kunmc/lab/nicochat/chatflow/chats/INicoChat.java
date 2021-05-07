@@ -7,11 +7,13 @@ import java.util.Date;
 
 public interface INicoChat {
 
-    public Vector2f GetPosition(Date nowTime);
+    Vector2f GetPosition(Date nowTime);
 
-    public Color GetColor();
+    Color GetColor();
 
-    public int GetSize();
+    int GetSize();
 
-    public boolean isFlowing();
+    boolean isFlowing();
+
+    String getChat();
 }

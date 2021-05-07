@@ -1,5 +1,6 @@
 package net.kunmc.lab.nicochat;
 
+import net.kunmc.lab.nicochat.chatflow.DrawNicoChat;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screen.ChatScreen;
 import net.minecraftforge.client.event.GuiOpenEvent;
@@ -26,16 +27,13 @@ public class NicoChat {
     public void onOpneGUI(GuiOpenEvent e){
         if(e.getGui() instanceof ChatScreen && !(e.getGui() instanceof ChatScreenTest)){
 
-            new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    try {
-                        Thread.sleep(60);
-                        ((ChatScreen)e.getGui()).onClose();
-                        Minecraft.getInstance().displayGuiScreen(new ChatScreenTest("aa"));
-                    } catch (InterruptedException interruptedException) {
-                        interruptedException.printStackTrace();
-                    }
+            new Thread(() -> {
+                try {
+                    Thread.sleep(60);
+                    e.getGui().onClose();
+                    Minecraft.getInstance().displayGuiScreen(new ChatScreenTest("aa"));
+                } catch (InterruptedException interruptedException) {
+                    interruptedException.printStackTrace();
                 }
             }).start();
 

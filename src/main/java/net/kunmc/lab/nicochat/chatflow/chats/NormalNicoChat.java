@@ -8,13 +8,15 @@ import java.util.Date;
 //普通に右から左に流れるチャット
 public class NormalNicoChat implements INicoChat{
     Color color;
-    int Size;
+    int size;
     double y;
+    String chat;
     Date chatInsertedTime;
 
-    public NormalNicoChat(Color color, int size, double y) {
+    public NormalNicoChat(Color color, int size, double y,String chat) {
         this.color = color;
-        Size = size;
+        this.size = size;
+        this.chat = chat;
         this.y = y;
         chatInsertedTime = new Date();
     }
@@ -38,5 +40,10 @@ public class NormalNicoChat implements INicoChat{
     @Override
     public boolean isFlowing() {
         return true;
+    }
+
+    @Override
+    public String getChat() {
+        return chat;
     }
 }
