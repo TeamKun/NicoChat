@@ -25,7 +25,7 @@ public class DrawNicoChat {
         //Pushとpopの間の変更は無効になる
         matrixStack.push();
 
-        matrixStack.translate(w/2,h/2,0);
+        matrixStack.translate(w/2,0,0);
         matrixStack.scale(1,1,0);
         //matrixStack.translate(200,0,0);
         mc.fontRenderer.drawString(matrixStack,"Windowsでコンピューターの世界が広がります。1234567890",0,0,0xffffff);
