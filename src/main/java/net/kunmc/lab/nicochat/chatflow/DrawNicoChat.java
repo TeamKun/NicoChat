@@ -34,8 +34,7 @@ public class DrawNicoChat {
             matrixStack.push();
 
             Vector3f pos = nicoChat.GetPosition(new Date());
-            //matrixStack.translate(pos.getX() * w,pos.getY() * h,pos.getZ());
-            matrixStack.translate(0,pos.getY() * h,pos.getZ());
+            matrixStack.translate(pos.getX() * w,pos.getY() * h,pos.getZ());
 
             Vector3f size = nicoChat.GetSize();
             matrixStack.scale(size.getX(), size.getY(), size.getZ());
