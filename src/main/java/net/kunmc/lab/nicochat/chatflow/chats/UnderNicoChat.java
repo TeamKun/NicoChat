@@ -11,6 +11,7 @@ import java.util.Date;
 //下に固定されるタイプのチャット
 public class UnderNicoChat  implements INicoChat{
     private static final float FlowingTime = 3000;
+    private static final float UnderChatXPosition = 0.5f;
 
     private final int color;
     private final int size;
@@ -33,7 +34,7 @@ public class UnderNicoChat  implements INicoChat{
 
     @Override
     public Vector3f GetPosition(Date nowTime) {
-        return new Vector3f(0.5f,y,0);
+        return new Vector3f(UnderChatXPosition,y,0);
     }
 
     @Override

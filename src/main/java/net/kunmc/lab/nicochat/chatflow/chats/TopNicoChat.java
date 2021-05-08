@@ -10,6 +10,8 @@ import java.util.Date;
 //上に固定されるタイプのチャット
 public class TopNicoChat implements INicoChat{
     private static final float FlowingTime = 3000;
+    //TODO Xの値を文字列の長さに合わせて求める
+    private static final float TopChatXPosition = 0.5f;
 
     private final int color;
     private final int size;
@@ -31,7 +33,7 @@ public class TopNicoChat implements INicoChat{
     }
     @Override
     public Vector3f GetPosition(Date nowTime) {
-        return new Vector3f(0.5f,y,0);
+        return new Vector3f(TopChatXPosition,y,0);
     }
 
     @Override
