@@ -1,8 +1,12 @@
 package net.kunmc.lab.nicochat;
 
 import net.kunmc.lab.nicochat.chatflow.DrawNicoChat;
+import net.kunmc.lab.nicochat.chatflow.util.NicoChatFactory;
+import net.kunmc.lab.nicochat.chatflow.NicoChatsFlowListManager;
+import net.kunmc.lab.nicochat.chatflow.chats.NicoChatType;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screen.ChatScreen;
+import net.minecraftforge.client.event.ClientChatEvent;
 import net.minecraftforge.client.event.GuiOpenEvent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.common.MinecraftForge;
@@ -31,13 +35,20 @@ public class NicoChat {
                 try {
                     Thread.sleep(60);
                     e.getGui().onClose();
-                    Minecraft.getInstance().displayGuiScreen(new ChatScreenTest("aa"));
+                    Minecraft.getInstance().displayGuiScreen(new ChatScreenTest(""));
                 } catch (InterruptedException interruptedException) {
                     interruptedException.printStackTrace();
                 }
             }).start();
 
         }
+    }
+
+    @SubscribeEvent
+    public void chatEvent(ClientChatEvent event){
+        NicoChatsFlowListManager.AddNicoChats(
+                NicoChatFactory.NewNicoChat(
+                        NicoChatType.Normal,2,0xffffff,0.5f,event.getMessage()));
     }
 
     // Directly reference a log4j logger.

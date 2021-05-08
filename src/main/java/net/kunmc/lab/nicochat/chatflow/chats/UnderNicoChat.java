@@ -12,13 +12,13 @@ import java.util.Date;
 public class UnderNicoChat  implements INicoChat{
     private static final float FlowingTime = 3000;
 
-    private final Color color;
+    private final int color;
     private final int size;
     private final float y;
     private final String chat;
     private final Date chatInsertedTime;
 
-    public UnderNicoChat(Color color, int size, float y,String chat){
+    public UnderNicoChat(int color, int size, float y,String chat){
         if(y < 0){
             y = 0;
         }else if(1 < y){
@@ -37,7 +37,7 @@ public class UnderNicoChat  implements INicoChat{
     }
 
     @Override
-    public Color GetColor() {
+    public int GetColor() {
         return color;
     }
 
@@ -49,10 +49,9 @@ public class UnderNicoChat  implements INicoChat{
     //TODO ここを実装する
     @Override
     public boolean isFlowing(Date nowTime) {
-        Date sub = CalcDateDifference.Calc(nowTime ,chatInsertedTime);
-        float tmp = sub.getTime();
+        long sub = CalcDateDifference.Calc(nowTime ,chatInsertedTime);
 
-        return tmp < FlowingTime;
+        return sub < FlowingTime;
     }
 
     @Override

@@ -1,4 +1,4 @@
-package net.kunmc.lab.nicochat.chatflow;
+package net.kunmc.lab.nicochat.chatflow.util;
 
 public class CalcSpeedFromStringLength {
     public float Calc(String str){

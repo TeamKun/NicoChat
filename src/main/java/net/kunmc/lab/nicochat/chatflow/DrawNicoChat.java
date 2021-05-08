@@ -21,7 +21,6 @@ public class DrawNicoChat {
     private static final Logger LOGGER = LogManager.getLogger();
 
     public static void NicoChatUpdate(RenderGameOverlayEvent renderGameOverlayEvent){
-        Minecraft mc = Minecraft.getInstance();
 
         MatrixStack matrixStack = renderGameOverlayEvent.getMatrixStack();
         int w = renderGameOverlayEvent.getWindow().getScaledWidth();
@@ -35,12 +34,13 @@ public class DrawNicoChat {
             matrixStack.push();
 
             Vector3f pos = nicoChat.GetPosition(new Date());
-            matrixStack.translate(pos.getX(),pos.getY(),pos.getZ());
+            //matrixStack.translate(pos.getX() * w,pos.getY() * h,pos.getZ());
+            matrixStack.translate(0,pos.getY() * h,pos.getZ());
 
             Vector3f size = nicoChat.GetSize();
             matrixStack.scale(size.getX(), size.getY(), size.getZ());
 
-            mc.fontRenderer.drawString(matrixStack, "Windowsでコンピューターの世界が広がります。1234567890", 0, 0, 0xffffff);
+            Minecraft.getInstance().fontRenderer.drawString(matrixStack, nicoChat.getChat(), 0, 0, nicoChat.GetColor());
 
             matrixStack.pop();
         }
