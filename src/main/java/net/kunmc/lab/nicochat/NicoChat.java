@@ -15,6 +15,8 @@ import net.minecraftforge.fml.common.Mod;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.util.Random;
+
 // The value here should match an entry in the META-INF/mods.toml file
 @Mod("nicochat")
 public class NicoChat {
@@ -46,9 +48,15 @@ public class NicoChat {
 
     @SubscribeEvent
     public void chatEvent(ClientChatEvent event){
+        float y = ((new Random()).nextInt(100) + 5) /100.0f;
+        y = easeInQuad(y);
         NicoChatsFlowListManager.AddNicoChats(
                 NicoChatFactory.NewNicoChat(
-                        NicoChatType.Normal,2,0xffffff,0.5f,event.getMessage()));
+                        NicoChatType.Normal,2,0xffffff, y,event.getMessage()));
+    }
+
+    private float easeInQuad(float x){
+        return  x * x * x;
     }
 
     // Directly reference a log4j logger.
