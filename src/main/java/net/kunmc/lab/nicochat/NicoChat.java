@@ -52,7 +52,7 @@ public class NicoChat {
         y = easeInQuad(y);
         NicoChatsFlowListManager.AddNicoChats(
                 NicoChatFactory.NewNicoChat(
-                        NicoChatType.Normal,2,0xffffff, y,event.getMessage()));
+                        event.getMessage(),y));
     }
 
     private float easeInQuad(float x){

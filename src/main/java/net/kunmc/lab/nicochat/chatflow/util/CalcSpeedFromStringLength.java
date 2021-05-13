@@ -1,7 +1,7 @@
 package net.kunmc.lab.nicochat.chatflow.util;
 
 public class CalcSpeedFromStringLength {
-    public float Calc(String str){
+    public static float Calc(String str){
         float tmp = 0;
         if(str.length() < 10){
             tmp = 0.1f;
@@ -10,6 +10,6 @@ public class CalcSpeedFromStringLength {
         }else {
             tmp = 1;
         }
-        return tmp;
+        return tmp + 1;
     }
 }

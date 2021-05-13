@@ -21,7 +21,6 @@ public class DrawNicoChat {
         int h = renderGameOverlayEvent.getWindow().getScaledHeight();
 
 
-        //TODO リストを取得してチャットを表示する処理を書く
         List<INicoChat> nicoChatList = NicoChatsFlowListManager.getNicoChats();
 
         for (INicoChat nicoChat : nicoChatList) {

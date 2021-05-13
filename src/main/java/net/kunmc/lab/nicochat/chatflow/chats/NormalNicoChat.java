@@ -2,6 +2,7 @@ package net.kunmc.lab.nicochat.chatflow.chats;
 
 import net.kunmc.lab.nicochat.NicoChat;
 import net.kunmc.lab.nicochat.chatflow.util.CalcDateDifference;
+import net.kunmc.lab.nicochat.chatflow.util.CalcSpeedFromStringLength;
 import net.minecraft.util.math.vector.Vector2f;
 import net.minecraft.util.math.vector.Vector3f;
 import net.minecraft.util.text.Color;
@@ -34,12 +35,12 @@ public class NormalNicoChat implements INicoChat{
         chatInsertedTime = new Date();
     }
 
-    //TODO ここを実装する
     @Override
     public Vector3f GetPosition(Date nowTime) {
         long sub = CalcDateDifference.Calc(nowTime,chatInsertedTime);
 
-        float tmp = (RightToLeftFlowingTime - sub) / RightToLeftFlowingTime;
+        float flowingTime = RightToLeftFlowingTime * CalcSpeedFromStringLength.Calc(chat);
+        float tmp = (flowingTime - sub) / flowingTime;
         return new Vector3f(tmp,y,0);
     }
 
@@ -53,7 +54,6 @@ public class NormalNicoChat implements INicoChat{
         return new Vector3f(size,size,0);
     }
 
-    //TODO ここを実装する
     @Override
     public boolean isFlowing(Date nowTime) {
         long sub = CalcDateDifference.Calc(nowTime ,chatInsertedTime);
