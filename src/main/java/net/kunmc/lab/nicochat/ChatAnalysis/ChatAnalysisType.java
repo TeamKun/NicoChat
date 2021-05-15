@@ -11,11 +11,11 @@ public class ChatAnalysisType {
     public static NicoChatType GetType(String chat){
         try {
             //[type:1]みたいなサイズタグが含まれてないかチェック
-            Matcher matcher = Pattern.compile("\\[type:[1-9]]").matcher(chat);
+            Matcher matcher = Pattern.compile("\\[type:[0-9]]").matcher(chat);
 
             if (!matcher.find()) return NicoChatType.Normal;
 
-            Matcher matcherSize = Pattern.compile("[1-9]").matcher(matcher.group());
+            Matcher matcherSize = Pattern.compile("[0-9]").matcher(matcher.group());
 
             //数字があったらintに変換し、NicoChatTypeに変換
             if(matcherSize.find()){

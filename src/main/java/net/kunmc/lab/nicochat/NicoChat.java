@@ -48,6 +48,7 @@ public class NicoChat {
 
     @SubscribeEvent
     public void chatEvent(ClientChatEvent event){
+        //TODO y座標を取得するメソッドの追加
         float y = ((new Random()).nextInt(100) + 5) /100.0f;
         y = easeInQuad(y);
         NicoChatsFlowListManager.AddNicoChats(
