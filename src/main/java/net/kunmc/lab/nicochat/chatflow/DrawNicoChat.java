@@ -23,6 +23,7 @@ public class DrawNicoChat {
 
         List<INicoChat> nicoChatList = NicoChatsFlowListManager.getNicoChats();
 
+        matrixStack.push();
         for (INicoChat nicoChat : nicoChatList) {
             matrixStack.push();
 
@@ -36,6 +37,7 @@ public class DrawNicoChat {
 
             matrixStack.pop();
         }
+        matrixStack.pop();
 
         //Pushとpopの間の変更は無効になる
     }
