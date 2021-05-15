@@ -10,6 +10,7 @@ import net.minecraftforge.client.event.ClientChatEvent;
 import net.minecraftforge.client.event.GuiOpenEvent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import org.apache.logging.log4j.LogManager;
@@ -44,6 +45,11 @@ public class NicoChat {
             }).start();
 
         }
+    }
+
+    @SubscribeEvent
+    public void worldTickEvent(TickEvent.WorldTickEvent event){
+        LOGGER.info("aaaaaaa");
     }
 
     @SubscribeEvent
