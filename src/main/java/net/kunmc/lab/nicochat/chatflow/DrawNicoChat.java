@@ -3,7 +3,12 @@ package net.kunmc.lab.nicochat.chatflow;
 import com.mojang.blaze3d.matrix.MatrixStack;
 import net.kunmc.lab.nicochat.chatflow.chats.INicoChat;
 import net.minecraft.client.Minecraft;
+import net.minecraft.util.IReorderingProcessor;
 import net.minecraft.util.math.vector.Vector3f;
+import net.minecraft.util.text.IFormattableTextComponent;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.util.text.Style;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -17,6 +22,7 @@ public class DrawNicoChat {
     public static void NicoChatUpdate(RenderGameOverlayEvent renderGameOverlayEvent){
 
         MatrixStack matrixStack = renderGameOverlayEvent.getMatrixStack();
+        Minecraft mc = Minecraft.getInstance();
         int w = renderGameOverlayEvent.getWindow().getScaledWidth();
         int h = renderGameOverlayEvent.getWindow().getScaledHeight();
 

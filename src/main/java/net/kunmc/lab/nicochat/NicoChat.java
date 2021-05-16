@@ -13,6 +13,7 @@ import net.minecraftforge.client.event.GuiOpenEvent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.TickEvent;
+import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
@@ -20,6 +21,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.lang.reflect.Field;
+import java.util.List;
 import java.util.Random;
 
 // The value here should match an entry in the META-INF/mods.toml file
@@ -29,7 +31,7 @@ public class NicoChat {
 
     //HUD表示時にイベントをキャッチしてチャットをチャットアップデートする
     @SubscribeEvent
-    public void drawHUD(RenderGameOverlayEvent.Post event){
+    public void drawHUD(RenderGameOverlayEvent.Chat event){
         DrawNicoChat.NicoChatUpdate(event);
     }
 
@@ -51,9 +53,22 @@ public class NicoChat {
         }
     }
 
+    private String lastChat = "null";
     @SubscribeEvent
     public void worldTickEvent(TickEvent.WorldTickEvent event){
-        //GetPlayerChatEvent.Update();
+        List<String> chats = Minecraft.getInstance().ingameGUI.getChatGUI().getSentMessages();
+
+        LOGGER.info(chats.size());
+        if(chats.size() < 1)return;
+
+        LOGGER.info(chats.get(chats.size()-1));
+        if(!chats.get(chats.size()-1).equals(lastChat)){
+            lastChat = chats.get(chats.size()-1);
+
+            float y = ((new Random()).nextInt(100) + 5) /100.0f;
+            y = easeInQuad(y);
+            NicoChatsFlowListManager.AddNicoChats(lastChat,y);
+        }
     }
 
     @SubscribeEvent
