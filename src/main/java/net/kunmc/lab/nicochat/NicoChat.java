@@ -37,13 +37,13 @@ public class NicoChat {
 
     //チャットGUIを専用クラスに置き換える
     @SubscribeEvent
-    public void onOpneGUI(GuiOpenEvent e){
-        if(e.getGui() instanceof ChatScreen && !(e.getGui() instanceof ChatScreenTest)){
+    public void onOpneGUI(GuiOpenEvent event){
+        if(event.getGui() instanceof ChatScreen && !(event.getGui() instanceof ChatScreenTest)){
 
             new Thread(() -> {
                 try {
                     Thread.sleep(60);
-                    e.getGui().onClose();
+                    event.getGui().onClose();
                     Minecraft.getInstance().displayGuiScreen(new ChatScreenTest(""));
                 } catch (InterruptedException interruptedException) {
                     interruptedException.printStackTrace();
@@ -51,38 +51,17 @@ public class NicoChat {
             }).start();
 
         }
-    }
-
-    private String lastChat = "null";
-    @SubscribeEvent
-    public void worldTickEvent(TickEvent.WorldTickEvent event){
-        List<String> chats = Minecraft.getInstance().ingameGUI.getChatGUI().getSentMessages();
-
-        LOGGER.info(chats.size());
-        if(chats.size() < 1)return;
-
-        LOGGER.info(chats.get(chats.size()-1));
-        if(!chats.get(chats.size()-1).equals(lastChat)){
-            lastChat = chats.get(chats.size()-1);
-
-            float y = ((new Random()).nextInt(100) + 5) /100.0f;
-            y = easeInQuad(y);
-            NicoChatsFlowListManager.AddNicoChats(lastChat,y);
+        if (!(Minecraft.getInstance().ingameGUI.getChatGUI() instanceof CustomChatGui)) {
+            try {
+                Minecraft minecraft = Minecraft.getInstance();
+                IngameGui ingameGUI = minecraft.ingameGUI;
+                Field field = ObfuscationReflectionHelper.findField(IngameGui.class, "persistantChatGUI");
+                field.setAccessible(true);
+                field.set(ingameGUI, new CustomChatGui(minecraft));
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
         }
-    }
-
-    @SubscribeEvent
-    public void chatEvent(ClientChatEvent event){
-        //TODO y座標を取得するメソッドの追加
-        float y = ((new Random()).nextInt(100) + 5) /100.0f;
-        y = easeInQuad(y);
-        NicoChatsFlowListManager.AddNicoChats(
-                NicoChatFactory.NewNicoChat(
-                        event.getMessage(),y));
-    }
-
-    private float easeInQuad(float x){
-        return  x * x * x;
     }
 
     // Directly reference a log4j logger.
