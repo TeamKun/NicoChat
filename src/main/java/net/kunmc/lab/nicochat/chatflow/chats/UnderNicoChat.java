@@ -30,7 +30,7 @@ public class UnderNicoChat  implements INicoChat{
         this.chat = chat;
         this.y = y;
         chatInsertedTime = new Date();
-        this.UnderChatXPosition = 0.5f - chat.length()/140.0f;
+        this.UnderChatXPosition = 0.5f - chat.length()/(140.0f/size);
     }
 
     @Override
