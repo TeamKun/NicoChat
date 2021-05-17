@@ -44,7 +44,7 @@ public class NicoChat {
         try {
             Minecraft minecraft = Minecraft.getInstance();
             IngameGui ingameGUI = minecraft.ingameGUI;
-            Field field = ObfuscationReflectionHelper.findField(IngameGui.class, "persistantChatGUI");
+            Field field = ObfuscationReflectionHelper.findField(IngameGui.class, "field_73840_e");
             field.setAccessible(true);
             field.set(ingameGUI, new CustomChatGui(minecraft));
         } catch (Exception e) {
