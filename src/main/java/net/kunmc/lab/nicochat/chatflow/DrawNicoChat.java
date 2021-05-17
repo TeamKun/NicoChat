@@ -24,7 +24,7 @@ public class DrawNicoChat {
         MatrixStack matrixStack = renderGameOverlayEvent.getMatrixStack();
         Minecraft mc = Minecraft.getInstance();
         int w = renderGameOverlayEvent.getWindow().getScaledWidth();
-        int h = renderGameOverlayEvent.getWindow().getScaledHeight();
+        int h = (int) (renderGameOverlayEvent.getWindow().getScaledHeight() * 0.8f);
 
 
         List<INicoChat> nicoChatList = NicoChatsFlowListManager.getNicoChats();

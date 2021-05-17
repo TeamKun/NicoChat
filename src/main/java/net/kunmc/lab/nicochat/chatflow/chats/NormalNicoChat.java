@@ -13,7 +13,7 @@ import java.util.Date;
 
 //普通に右から左に流れるチャット
 public class NormalNicoChat implements INicoChat{
-    private static final float FlowingTime = 5000;
+    private static final float FlowingTime = 10000;
     private static final float RightToLeftFlowingTime = 3000;
 
     private final int color;
@@ -39,7 +39,7 @@ public class NormalNicoChat implements INicoChat{
     public Vector3f GetPosition(Date nowTime) {
         long sub = CalcDateDifference.Calc(nowTime,chatInsertedTime);
 
-        float flowingTime = RightToLeftFlowingTime * CalcSpeedFromStringLength.Calc(chat);
+        float flowingTime = RightToLeftFlowingTime / CalcSpeedFromStringLength.Calc(chat);
         float tmp = (flowingTime - sub) / flowingTime;
         return new Vector3f(tmp,y,0);
     }

@@ -185,8 +185,7 @@ public class CustomChatGui extends NewChatGui {
            // this.drawnChatLines.add(0, new ChatLine<>(p_238493_3_, ireorderingprocessor, p_238493_2_));
         }
 
-        float y = ((new Random()).nextInt(100) + 5) /100.0f;
-        NicoChatsFlowListManager.AddNicoChats(p_238493_1_.getString(),y*y*y);
+        NicoChatsFlowListManager.AddNicoChats(p_238493_1_.getString());
 
         while(this.drawnChatLines.size() > 100) {
             this.drawnChatLines.remove(this.drawnChatLines.size() - 1);

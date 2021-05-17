@@ -7,6 +7,7 @@ import net.kunmc.lab.nicochat.chatflow.util.NicoChatFactory;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Random;
 import java.util.stream.Collectors;
 
 public class NicoChatsFlowListManager {
@@ -15,8 +16,8 @@ public class NicoChatsFlowListManager {
         nicoChats.add(nicoChat);
     }
 
-    public static void AddNicoChats(String chat,float y){
-        nicoChats.add(NicoChatFactory.NewNicoChat(chat,y));
+    public static void AddNicoChats(String chat){
+        nicoChats.add(NicoChatFactory.NewNicoChat(chat));
     }
 
     public static List<INicoChat> getNicoChats(){
