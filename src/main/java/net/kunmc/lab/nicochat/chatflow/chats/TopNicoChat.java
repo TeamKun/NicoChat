@@ -11,7 +11,7 @@ import java.util.Date;
 public class TopNicoChat implements INicoChat{
     private static final float FlowingTime = 3000;
     //TODO Xの値を文字列の長さに合わせて求める
-    private static final float TopChatXPosition = 0.5f;
+    private final float TopChatXPosition;
 
     private final int color;
     private final int size;
@@ -30,6 +30,8 @@ public class TopNicoChat implements INicoChat{
         this.chat = chat;
         this.y = y;
         chatInsertedTime = new Date();
+
+        this.TopChatXPosition = 0.5f - chat.length()/(140.0f/size);
     }
     @Override
     public Vector3f GetPosition(Date nowTime) {

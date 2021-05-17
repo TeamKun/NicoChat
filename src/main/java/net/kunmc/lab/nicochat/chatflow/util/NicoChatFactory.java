@@ -16,10 +16,12 @@ public class NicoChatFactory {
         switch (type) {
             case Top:
                 y = y*y*y;
+                if(0.4f < y) y = 0.4f;
                 tmp = new TopNicoChat(color, size, y, chat);
                 break;
             case Under:
                 y = (float) (1 - Math.pow(1 - y, 3));
+                if(y < 0.6f) y = 0.6f;
                 tmp = new UnderNicoChat(color, size, y, chat);
                 break;
             default:

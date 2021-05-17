@@ -11,7 +11,7 @@ import java.util.Date;
 //下に固定されるタイプのチャット
 public class UnderNicoChat  implements INicoChat{
     private static final float FlowingTime = 3000;
-    private static final float UnderChatXPosition = 0.5f;
+    private final float UnderChatXPosition;
 
     private final int color;
     private final int size;
@@ -30,6 +30,7 @@ public class UnderNicoChat  implements INicoChat{
         this.chat = chat;
         this.y = y;
         chatInsertedTime = new Date();
+        this.UnderChatXPosition = 0.5f - chat.length()/140.0f;
     }
 
     @Override
