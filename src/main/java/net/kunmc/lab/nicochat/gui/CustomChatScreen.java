@@ -213,7 +213,12 @@ public class CustomChatScreen extends ChatScreen {
         }
         //if (net.minecraftforge.client.ClientCommandHandler.instance.executeCommand(mc.player, msg) != 0) return; //Forge: TODO Client command re-write
 
-        this.minecraft.player.sendChatMessage(text + AddTag());
+        LOGGER.info(text);
+        if (text.charAt(0) == '/') {
+            this.minecraft.player.sendChatMessage(text);
+        }else {
+            this.minecraft.player.sendChatMessage(text + AddTag());
+        }
     }
 
     static int type = 0;
