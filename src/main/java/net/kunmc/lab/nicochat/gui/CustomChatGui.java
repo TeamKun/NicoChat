@@ -1,4 +1,4 @@
-package net.kunmc.lab.nicochat;
+package net.kunmc.lab.nicochat.gui;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Queues;

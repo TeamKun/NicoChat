@@ -1,19 +1,14 @@
 package net.kunmc.lab.nicochat;
 
 import net.kunmc.lab.nicochat.chatflow.DrawNicoChat;
-import net.kunmc.lab.nicochat.chatflow.util.NicoChatFactory;
-import net.kunmc.lab.nicochat.chatflow.NicoChatsFlowListManager;
-import net.kunmc.lab.nicochat.chatflow.chats.NicoChatType;
+import net.kunmc.lab.nicochat.gui.CustomChatGui;
+import net.kunmc.lab.nicochat.gui.CustomChatScreen;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.IngameGui;
 import net.minecraft.client.gui.screen.ChatScreen;
-import net.minecraft.data.BlockModeInfo;
-import net.minecraftforge.client.event.ClientChatEvent;
 import net.minecraftforge.client.event.GuiOpenEvent;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.TickEvent;
-import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
@@ -21,12 +16,11 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.lang.reflect.Field;
-import java.util.List;
-import java.util.Random;
 
 // The value here should match an entry in the META-INF/mods.toml file
 @Mod("nicochat")
 public class NicoChat {
+
 
 
     //HUD表示時にイベントをキャッチしてチャットをチャットアップデートする
@@ -38,6 +32,25 @@ public class NicoChat {
     //チャットGUIを専用クラスに置き換える
     @SubscribeEvent
     public void onOpneGUI(GuiOpenEvent event){
+        if(event.getGui() instanceof ChatScreen && !(event.getGui() instanceof CustomChatScreen)){
+
+            new Thread(() -> {
+                try {
+                    ChatScreen chatScreen = (ChatScreen)event.getGui();
+                    String  str  = ObfuscationReflectionHelper.getPrivateValue(ChatScreen.class,chatScreen,"defaultInputFieldText");
+                    LOGGER.info(str);
+                    Thread.sleep(60);
+
+                    event.getGui().onClose();
+
+                    Minecraft.getInstance().displayGuiScreen(new CustomChatScreen(str));
+                } catch (InterruptedException interruptedException) {
+                    interruptedException.printStackTrace();
+                }
+            }).start();
+
+        }
+
         if (Minecraft.getInstance().ingameGUI.getChatGUI() instanceof CustomChatGui) {
             return;
         }
