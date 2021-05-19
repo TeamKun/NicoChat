@@ -37,7 +37,7 @@ public class NicoChat {
             new Thread(() -> {
                 try {
                     ChatScreen chatScreen = (ChatScreen)event.getGui();
-                    String  str  = ObfuscationReflectionHelper.getPrivateValue(ChatScreen.class,chatScreen,"defaultInputFieldText");
+                    String  str  = ObfuscationReflectionHelper.getPrivateValue(ChatScreen.class,chatScreen,"field_146409_v");
                     LOGGER.info(str);
                     Thread.sleep(60);
 
