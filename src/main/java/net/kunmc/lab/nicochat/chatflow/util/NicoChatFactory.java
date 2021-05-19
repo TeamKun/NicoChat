@@ -37,6 +37,6 @@ public class NicoChatFactory {
                 ChatAnalysisType.GetType(chat),
                 ChatAnalysisSize.GetSize(chat),
                 ChatAnalysisColor.GetColor(chat),
-                ChatRemoveTag.Remove(chat));
+                ChatRemoveTag.RemoveAllTag(chat));
     }
 }
