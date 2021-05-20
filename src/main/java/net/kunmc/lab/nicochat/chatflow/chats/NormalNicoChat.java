@@ -1,12 +1,8 @@
 package net.kunmc.lab.nicochat.chatflow.chats;
 
-import net.kunmc.lab.nicochat.NicoChat;
 import net.kunmc.lab.nicochat.chatflow.util.CalcDateDifference;
-import net.kunmc.lab.nicochat.chatflow.util.CalcSpeedFromStringLength;
-import net.minecraft.util.math.vector.Vector2f;
+import net.kunmc.lab.nicochat.chatflow.util.CalcFlowingTimeOffsetFromStringLength;
 import net.minecraft.util.math.vector.Vector3f;
-import net.minecraft.util.text.Color;
-import org.apache.logging.log4j.LogManager;
 
 import java.util.Date;
 
@@ -14,7 +10,8 @@ import java.util.Date;
 //普通に右から左に流れるチャット
 public class NormalNicoChat implements INicoChat{
     private static final float FlowingTime = 10000;
-    private static final float RightToLeftFlowingTime = 3000;
+    private static final float RightToLeftFlowingTime = 5000;
+    private static final float MinRightToLeftFlowingTime = 1000;
 
     private final int color;
     private final int size;
@@ -39,7 +36,9 @@ public class NormalNicoChat implements INicoChat{
     public Vector3f GetPosition(Date nowTime) {
         long sub = CalcDateDifference.Calc(nowTime,chatInsertedTime);
 
-        float flowingTime = RightToLeftFlowingTime / CalcSpeedFromStringLength.Calc(chat);
+        //float flowingTime = RightToLeftFlowingTime / CalcSpeedFromStringLength.Calc(chat);
+        float flowingTime = RightToLeftFlowingTime - CalcFlowingTimeOffsetFromStringLength.Calc(chat,size);
+        if(flowingTime<MinRightToLeftFlowingTime) flowingTime = MinRightToLeftFlowingTime;
         float tmp = (flowingTime - sub) / flowingTime;
         return new Vector3f(tmp,y,0);
     }
