@@ -31,7 +31,7 @@ public class TopNicoChat implements INicoChat{
         this.y = y;
         chatInsertedTime = new Date();
 
-        this.TopChatXPosition = 0.5f - chat.length()/(140.0f/size);
+        this.TopChatXPosition = 0.5f - chat.length()/(200.0f/size);
     }
     @Override
     public Vector3f GetPosition(Date nowTime) {
